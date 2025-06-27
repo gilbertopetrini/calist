@@ -48,26 +48,6 @@ function Config() {
   }
   };
   // Função para mostrar a notificação local
-  const showNotification = (title, body) => {
-  if (Notification.permission === 'granted') {
-    navigator.serviceWorker.ready.then((reg) => {
-      reg.showNotification(title, {
-        body: body,
-        icon: '/logo.png',
-        vibrate: [200, 100, 200],
-        tag: 'pix-notification',
-        renotify: true
-      });
-    });
-  } else {
-    alert("Permissão de notificação não concedida.");
-  }
-};
-
-  // Simula uma notificação de Pix
-  const simularPix = () => {
-    showNotification('Transferência recebida','Você recebeu uma transferência de R$ ' +valorpix+' de ' +nomepix);
-  };
 
   useEffect(() => {
 
@@ -234,24 +214,7 @@ function Config() {
       </label>
       
       <button className='button' onClick={salvar}>Salvar e voltar</button>
-      <h2>Gerador de Notificação</h2>
-      <label>
-        Valor pix: <br/>
-        <input
-          className='input'
-          value={valorpix}
-          onChange={handleValorpixChange} // Usa o novo handler
-          inputMode="numeric" // Sugere teclado numérico em dispositivos móveis
-          maxlength="14"
-        />  
-      </label>
-      <label>
-        Nome pix: <br/>
-        <input className='input' placeholder='Nome completo' value={nomepix} onChange={(e) => setNomepix(e.target.value)} />
-      </label>
-
-      <button className='button' onClick={simularPix}>Simular Notificação</button>
-
+      
     </div>
   );
 }
